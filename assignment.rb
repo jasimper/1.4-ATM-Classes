@@ -19,15 +19,28 @@
 # With this little bit of information
 # we are able to describe our class
 # and its actions (aka, methods)
-csv = CSV.new(user.csv, :headers => true, :header_converters => :symbol, :converters => :all)
-csv.to_a.map {|row| row.to_hash }
+
+require "csv"
+arr_to_hsh_users = []
+csv = CSV.foreach('users.csv', headers: true) do |row|
+  row.to_hash
+arr_to_hsh_users.push(row)
+end
+puts arr_to_hsh_users
 
 class User
-  attr_accessor :"name", :pin, :balance
+  def initialize(name, pin, balance)
+    @name     = name
+    @pin      = pin
+    @balance  = balance
+  end
+end
+# class User
+#   attr_accessor :name, :pin, :balance
 
   def check_balance
   end
 
   def withdraw
   end
-end
+# end
