@@ -9,7 +9,6 @@ csv = CSV.foreach('./users.csv', :headers => true, :header_converters => :symbol
 # Curious if there is a way to do this without creating an array.
 # All the User info is right here, I just don't know how to access it...
 # ... unless I push it to an array.
-puts user.inspect
   current_users.push(user)
 }
 
@@ -73,7 +72,7 @@ atm_balance = 50000
     print "> "
     withdraw_amount = gets.chomp.to_i
       if atm_balance < withdraw_amount
-        error_msg"Sorry. ATM Out of Order."
+        error_msg("Sorry. ATM Out of Order.")
       elsif withdraw_amount > verified_user.balance
         error_msg("Bummer. You do not have enough funds.")
       else verified_user.balance -= withdraw_amount
@@ -92,6 +91,6 @@ atm_balance = 50000
     puts "Thanks. Please come again!"
   end
 else
-  error_msg"Your information cannot be verified."
+  error_msg("Your information cannot be verified.")
   # start_over
 end
