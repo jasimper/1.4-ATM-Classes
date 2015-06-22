@@ -11,7 +11,9 @@ csv = CSV.foreach('./users.csv', headers: true, header_converters: :symbol) { |r
 # ... unless I push it to an array.
   current_users.push(user)
 }
-puts current_users.inspect
+
+## ATM functionality
+
 def user_input(text)
   var = ""
   while var == ""
@@ -75,6 +77,8 @@ atm_balance = 50000
         error_msg("Sorry. ATM Out of Order.")
       elsif withdraw_amount > verified_user.balance
         error_msg("Bummer. You do not have enough funds.")
+      elsif withdraw_amount <= 0
+        error_msg("You must enter a positive number or this is pointless.")
       else verified_user.balance -= withdraw_amount
         puts %{
         **********************
