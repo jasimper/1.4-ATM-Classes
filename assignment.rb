@@ -3,7 +3,8 @@ require "./user.rb"
 
 ### CSV set-up
 current_users = []
-csv = CSV.foreach('./users.csv', :headers => true, :header_converters => :symbol) { |row|
+# csv = CSV.foreach('./users.csv', :headers => true, :header_converters => :symbol) { |row|
+csv = CSV.foreach('./users.csv', headers: true, header_converters: :symbol) { |row|
   row.to_hash
   user = User.new(row[:name], row[:pin], row[:balance])
 # Curious if there is a way to do this without creating an array.
@@ -11,7 +12,7 @@ csv = CSV.foreach('./users.csv', :headers => true, :header_converters => :symbol
 # ... unless I push it to an array.
   current_users.push(user)
 }
-
+puts current_users.inspect
 def user_input(text)
   var = ""
   while var == ""

@@ -10,13 +10,13 @@ class User
   def name
     @name
   end
-  
+
   def balance
     @balance.to_i
   end
 
   def check_balance
-    "Hello, #{name}. Your current balance is #{balance}."
+    "#{name}, your current balance is #{balance}."
   end
 
   def withdraw
