@@ -3,7 +3,6 @@ require "./user.rb"
 
 ### CSV set-up
 current_users = []
-# csv = CSV.foreach('./users.csv', :headers => true, :header_converters => :symbol) { |row|
 csv = CSV.foreach('./users.csv', headers: true, header_converters: :symbol) { |row|
   row.to_hash
   user = User.new(row[:name], row[:pin], row[:balance])
