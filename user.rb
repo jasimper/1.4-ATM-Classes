@@ -7,7 +7,13 @@ class User
     @balance  = balance
   end
 
-
+  def name
+    @name
+  end
+  
+  def balance
+    @balance.to_i
+  end
 
   def check_balance
     "Hello, #{name}. Your current balance is #{balance}."
