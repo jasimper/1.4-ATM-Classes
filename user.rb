@@ -2,16 +2,13 @@ class User
   attr_accessor :name, :pin, :balance
 
   def initialize(name, pin, balance)
-    @name    = name
-    @pin     = pin
-    @balance = balance.to_i
+    self.name    = name
+    self.pin     = pin
+    self.balance = balance.to_i
   end
 
   def check_balance
     "#{name}, your current balance is #{balance}."
   end
 
-  def withdraw
-    @balance - withdraw_amount
-  end
 end

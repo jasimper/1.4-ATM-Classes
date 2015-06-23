@@ -3,20 +3,20 @@ require "./user.rb"
 
 ### CSV set-up
 current_users = []
-csv = CSV.foreach('./users.csv', headers: true, header_converters: :symbol) { |row|
+csv = CSV.foreach('./users.csv', headers: true, header_converters: :symbol) do |row|
   row.to_hash
   user = User.new(row[:name], row[:pin], row[:balance])
 # Curious if there is a way to do this without creating an array.
 # All the User info is right here, I just don't know how to access it...
 # ... unless I push it to an array.
   current_users.push(user)
-}
+end
 
 ## ATM functionality
 
 def user_input(text)
   var = ""
-  while var == ""
+  while var.empty?
     puts text
     print "> "
     var = gets.chomp
@@ -47,7 +47,7 @@ current_pin = user_input("Please enter your PIN:")
 verified_user = nil
 current_users.each do |user|
   if user.name == current_name && user.pin == current_pin
-  verified_user = user
+    verified_user = user
   end
 end
 
@@ -66,20 +66,21 @@ if verified_user
 
 ### ATM Actions
 
-atm_balance = 50000
+  atm_balance = 50000
   if choice == 1
     puts verified_user.check_balance
   elsif choice == 2
     puts "How much would you like to withdraw?"
     print "> "
     withdraw_amount = gets.chomp.to_i
-      if atm_balance < withdraw_amount
+    if atm_balance < withdraw_amount
         error_msg("Sorry. ATM Out of Order.")
-      elsif withdraw_amount > verified_user.balance
+    elsif withdraw_amount > verified_user.balance
         error_msg("Bummer. You do not have enough funds.")
-      elsif withdraw_amount <= 0
+    elsif withdraw_amount <= 0
         error_msg("You must enter a positive number or this is pointless.")
-      else verified_user.balance -= withdraw_amount
+    else
+        verified_user.balance -= withdraw_amount
         puts %{
         **********************
 
@@ -90,8 +91,8 @@ atm_balance = 50000
 
         **********************
         }
-      end
-  else choice == 3
+    end
+  elsif choice == 3
     puts "Thanks. Please come again!"
   end
 else
